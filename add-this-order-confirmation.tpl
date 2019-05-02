@@ -31,7 +31,7 @@
               "opt_in_style": "CENTER_DIALOG",
               // OPTIONAL FIELDS
               "products": [
-                {foreach $order.products as $item_product}{ "gtin": "{if !empty({$item_product.product_ean13})}{$item_product.product_ean13}{elseif !empty({$item_product.product_upc})}{$item_product.product_upc}{else}{$item_product.product_id}:{$item_product.product_attribute_id}{/if}" } {if !$item_product@last},{/if}{/foreach}]
+                {foreach $order.products as $item_product}{ "gtin": "{if !empty({$item_product.product_ean13})}{$item_product.product_ean13}{elseif !empty({$item_product.product_upc})}{$item_product.product_upc}{else}{$item_product.product_reference}{/if}" } {if !$item_product@last},{/if}{/foreach}]
 
             }); 
          });
