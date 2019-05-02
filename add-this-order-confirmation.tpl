@@ -22,17 +22,19 @@
         window.gapi.load('surveyoptin', function() {
           window.gapi.surveyoptin.render(
             {
-              // REQUIRED
               "merchant_id": {$merchant_id},
               "order_id": "{$order.details.id}",
               "email": "{$customer.email}",
               "delivery_country": "{Country::getIsoById($order.addresses.delivery.id_country)|upper}",
               "estimated_delivery_date": "{"+$estimated_delivery_days days"|date_format:"%Y-%m-%d"}",
               "opt_in_style": "CENTER_DIALOG",
-              // OPTIONAL FIELDS
               "products": [
-                {foreach $order.products as $item_product}{ "gtin": "{if !empty({$item_product.product_ean13})}{$item_product.product_ean13}{elseif !empty({$item_product.product_upc})}{$item_product.product_upc}{else}{$item_product.product_reference}{/if}" } {if !$item_product@last},{/if}{/foreach}]
-
+                {foreach $order.products as $item_product}
+                  {
+                    "gtin": "{if !empty({$item_product.product_ean13})}{$item_product.product_ean13}{/if}" 
+                  } {if !$item_product@last},{/if}
+                {/foreach}
+              ]
             }); 
          });
       }
